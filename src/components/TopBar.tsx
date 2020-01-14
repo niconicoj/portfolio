@@ -1,5 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -13,10 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    buttonContainer: {
-      marginRight: theme.spacing(4),
+      marginLeft: theme.spacing(4),
     },
     title: {
       flexGrow: 1,
@@ -24,26 +23,44 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TopBar() {
+function TopBar() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography variant="h5" className={classes.title}>
-            niconico.io
-          </Typography>
-          <div className={classes.buttonContainer}>
-            <Button color="inherit" className={classes.menuButton}>ABOUT ME</Button>
-            <Button color="inherit" className={classes.menuButton}>SKILLS</Button>
-            <Button color="inherit" className={classes.menuButton}>CONTACT</Button>
-          </div>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon fontSize="large"/>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+  if(matches) {
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Typography variant="h5" className={classes.title}>
+              niconico.io
+            </Typography>
+            <div>
+              <Button color="inherit" className={classes.menuButton}>ABOUT ME</Button>
+              <Button color="inherit" className={classes.menuButton}>SKILLS</Button>
+              <Button color="inherit" className={classes.menuButton}>CONTACT</Button>
+            </div>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  } else {
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Typography variant="h5" className={classes.title}>
+              niconico.io
+            </Typography>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <MenuIcon fontSize="large"/>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
+
+export default TopBar;
