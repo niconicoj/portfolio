@@ -5,8 +5,8 @@ pipeline {
       args '''-p 3000:3000
 --network default_network
 --hostname portfolio
---network-alias={$BUILD_TAG}.niconico.io
--e "VIRTUAL_HOST={$BUILD_TAG}.niconico.io"
+--network-alias=$BUILD_TAG.niconico.io
+-e "VIRTUAL_HOST=$BUILD_TAG.niconico.io"
 -e "VIRTUAL_PORT=3000"'''
     }
   }
