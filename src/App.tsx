@@ -7,6 +7,7 @@ import TopApp from './components/TopBar'
 import Header from './components/Header';
 import CustomDivider from './components/customDivider';
 import SkillsArray from './components/SkillsArray';
+import Footer from './components/Footer';
 
 const theme = createMuiTheme({
   palette: {
@@ -86,7 +87,7 @@ const App: React.FC = () => {
             <SkillsArray/>
           </Grid>
         </Grid>
-
+        <Footer/>
       </div>
     </ThemeProvider>
   );
