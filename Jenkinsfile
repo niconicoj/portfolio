@@ -9,9 +9,7 @@ pipeline {
 -e "VIRTUAL_HOST=$BUILD_TAG.niconico.io"
 -e "VIRTUAL_PORT=3000"'''
     }
-  }
-  environment {
-    CI = 'true' 
+
   }
   stages {
     stage('Build') {
@@ -19,17 +17,23 @@ pipeline {
         sh './scripts/build.sh'
       }
     }
+
     stage('Test') {
       steps {
         sh './scripts/test.sh'
       }
     }
+
     stage('Deliver') {
       steps {
-        sh './scripts/deliver.sh' 
-        input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-        sh './scripts/kill.sh' 
+        sh './scripts/deliver.sh'
+        input 'Test environment is live at {$BUILD_TAG}.niconico.io. When done with testing click "Proceed" to continue.'
+        sh './scripts/kill.sh'
       }
     }
+
+  }
+  environment {
+    CI = 'true'
   }
 }
