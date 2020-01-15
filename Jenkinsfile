@@ -27,7 +27,7 @@ pipeline {
     stage('Deliver') {
       steps {
         sh './scripts/deliver.sh'
-        input 'Test environment is live at {$BUILD_TAG}.niconico.io. When done with testing click "Proceed" to continue.'
+        input 'Test environment is live at ${BUILD_TAG}.niconico.io. When done with testing click "Proceed" to continue.'
         sh './scripts/kill.sh'
       }
     }
