@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
         top: 0,
         left: "5%",
         right: "5%",
-        width: "30em",
+        width: "25vw",
         height: "1px",
         backgroundImage: "linear-gradient(to right, transparent, white, transparent)",
         transform: "translate(-50%, 0)"    
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
         top: 0,
         left: "5%",
         right: "5%",
-        width: "30em",
+        width: "25vw",
         height: "1px",
         backgroundImage: "linear-gradient(to right, transparent, black, transparent)",
         transform: "translate(-50%, 0)"    
