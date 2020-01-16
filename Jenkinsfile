@@ -7,6 +7,7 @@ pipeline {
 --hostname portfolio
 --network-alias=$BUILD_TAG.niconico.io
 -e "VIRTUAL_HOST=$BUILD_TAG.niconico.io"
+-e "LETSENCRYPT_HOST=subdomain.yourdomain.tld"
 -e "VIRTUAL_PORT=3000"'''
     }
 
