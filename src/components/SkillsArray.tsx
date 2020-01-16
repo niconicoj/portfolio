@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 function SkillsArray() {
   const classes = useStyles();
 
-  const skills = ['php', 'javascript', 'sql', 'css', 'docker', 'react', 'mongoDB', 'typescript', 'nodejs', 'git'];
+  const skills = ['php', 'javascript', 'sql', 'css', 'docker', 'react', 'mongoDB', 'typescript', 'nodejs', 'git', 'jenkins', 'nginx'];
 
   return(
     <Grid container spacing={2} direction="row" justify="center" alignItems="center">
