@@ -34,7 +34,7 @@ function TopBar() {
         <AppBar position="static" color="primary">
           <Toolbar>
             <Typography variant="h5" className={classes.title}>
-              niconico.io
+              niconico.io (develop build)
             </Typography>
             <div>
               <Button color="inherit" className={classes.menuButton}>ABOUT ME</Button>
