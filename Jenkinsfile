@@ -1,13 +1,16 @@
 pipeline {
+  environment {
+    DOMAIN_NAME = credentials('DOMAIN_NAME')
+  }
   agent {
     docker {
       image 'node:lts-alpine'
       args '''-p 3000:3000
 --network default_network
 --hostname portfolio.$BUILD_TAG
---network-alias=$BUILD_TAG.${credentials('DOMAIN_NAME')}
--e "VIRTUAL_HOST=$BUILD_TAG.${credentials('DOMAIN_NAME')}"
--e "LETSENCRYPT_HOST=$BUILD_TAG.${credentials('DOMAIN_NAME')}"
+--network-alias=$BUILD_TAG.$DOMAIN_NAME
+-e "VIRTUAL_HOST=$BUILD_TAG.$DOMAIN_NAME"
+-e "LETSENCRYPT_HOST=$BUILD_TAG.$DOMAIN_NAME"
 -e "VIRTUAL_PORT=3000"'''
     }
   }
