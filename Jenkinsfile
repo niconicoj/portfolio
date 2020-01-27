@@ -1,7 +1,6 @@
 pipeline {
   environment {
     CI = 'true'
-    domain-name = credentials('domain-name')
   }
   agent {
     docker {
