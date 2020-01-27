@@ -1,17 +1,14 @@
 pipeline {
-  environment {
-    CI = 'true'
-  }
   agent {
     docker {
       image 'node:lts-alpine'
-      args """-p 3000:3000
+      args '''-p 3000:3000
 --network default_network
---hostname portfolio.${BUILD_TAG}.domain-name
---network-alias=${BUILD_TAG}.domain-name
--e \"VIRTUAL_HOST=${BUILD_TAG}.domain-name\"
--e \"LETSENCRYPT_HOST=${BUILD_TAG}.domain-name\"
--e \"VIRTUAL_PORT=3000\""""
+--hostname portfolio.$BUILD_TAG
+--network-alias=$BUILD_TAG.niconico.io
+-e "VIRTUAL_HOST=$BUILD_TAG.niconico.io"
+-e "LETSENCRYPT_HOST=$BUILD_TAG.niconico.io"
+-e "VIRTUAL_PORT=3000"'''
     }
   }
   stages {
@@ -45,5 +42,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    CI = 'true'
   }
 }
