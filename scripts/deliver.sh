@@ -1,5 +1,3 @@
 set -x
-HTTPS=true npm start &
-sleep 1
-echo $! > .pidfile
+npm run build
 set +x
