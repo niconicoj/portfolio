@@ -1,7 +1,4 @@
 pipeline {
-  environment {
-    DOMAIN_NAME = credentials('DOMAIN_NAME')
-  }
   agent {
     docker {
       image 'node:lts-alpine'
@@ -48,5 +45,6 @@ pipeline {
   }
   environment {
     CI = 'true'
+    DOMAIN_NAME = credentials('DOMAIN_NAME')
   }
 }
