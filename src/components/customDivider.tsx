@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     dividerWhite: {
       position: "relative",
+      alignSelf: "center",
       height: 1,
       '&::before': {
         content: '""',
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     dividerBlack: {
       position: "relative",
+      alignSelf: "center",
       height: 1,
       '&::before': {
         content: '""',
