@@ -3,7 +3,8 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
 
-import TopApp from './components/TopBar'
+import TopApp from './components/TopBar';
+import Contact from './components/Contact';
 import Header from './components/Header';
 import CustomDivider from './components/customDivider';
 import SkillsArray from './components/SkillsArray';
@@ -34,7 +35,14 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(2)
     },
     spacing: {
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
+    },
+    divider: {
+      marginBottom: theme.spacing(2),
+      alignSelf: "center",
+    },
+    headerText: {
+      textAlign: "center",
     }
   }),
 );
@@ -51,14 +59,14 @@ const App: React.FC = () => {
           container
           direction="column"
           justify="center"
-          alignItems="center"
+          alignItems="stretch"
         > 
           <Grid item className={classes.spacing}>
-            <Typography>
+            <Typography className={classes.headerText}>
               ABOUT ME
             </Typography>
           </Grid>
-          <Grid item className={classes.spacing}>
+          <Grid item className={classes.divider}>
             <CustomDivider color="black"/>
           </Grid>
           <Grid item className={classes.paragraph}>
@@ -76,15 +84,26 @@ const App: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item className={classes.spacing}>
-            <Typography>
+            <Typography  className={classes.headerText}>
               SKILLS
             </Typography>
           </Grid>
-          <Grid item className={classes.spacing}>
+          <Grid item className={classes.divider}>
             <CustomDivider color="black"/>
           </Grid>
           <Grid item className={classes.spacing}>
             <SkillsArray/>
+          </Grid>
+          <Grid item className={classes.spacing}>
+            <Typography  className={classes.headerText}>
+              CONTACT ME
+            </Typography>
+          </Grid>
+          <Grid item className={classes.divider}>
+            <CustomDivider color="black"/>
+          </Grid>
+          <Grid item className={classes.spacing}>
+            <Contact/>
           </Grid>
         </Grid>
         <Footer/>
