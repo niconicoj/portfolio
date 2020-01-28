@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     skillsCard: {
       marginTop: theme.spacing(2),
-      margin: theme.spacing(8)
     },
     skillImage: {
       margin: theme.spacing(1)

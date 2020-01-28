@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#434343',
       color: '#999999',
       paddingTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       paddingBottom: theme.spacing(1)
     },
     avatar: {

@@ -8,8 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#1E1E1E",
       color:"white",
       marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2),
-      margin: theme.spacing(8)
+      marginBottom: theme.spacing(2)
     },
     skillImage: {
       margin: theme.spacing(1)
