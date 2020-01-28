@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: '#434343',
-      color: '#999999',
+      color: '#dddddd',
       paddingTop: theme.spacing(1),
       marginTop: theme.spacing(2),
       paddingBottom: theme.spacing(1)

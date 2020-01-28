@@ -49,7 +49,7 @@ function Contact() {
                   <TextField
                     required
                     fullWidth
-                    id="outlined-required"
+                    id="mail"
                     label="Email"
                     placeholder="example@mail.com"
                     variant="outlined"
@@ -60,7 +60,7 @@ function Contact() {
                   <TextField
                     required
                     fullWidth
-                    id="outlined-required"
+                    id="name"
                     label="Name"
                     placeholder="John Doe"
                     variant="outlined"
@@ -70,7 +70,7 @@ function Contact() {
                 <Grid item>
                   <TextField
                     fullWidth
-                    id="outlined-required"
+                    id="company"
                     label="Company"
                     placeholder="Acme Corporation"
                     variant="outlined"
