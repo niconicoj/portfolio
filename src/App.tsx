@@ -4,11 +4,12 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
 
 import TopApp from './components/TopBar';
-import Contact from './components/Contact';
 import Header from './components/Header';
 import CustomDivider from './components/customDivider';
 import SkillsArray from './components/SkillsArray';
 import Footer from './components/Footer';
+
+import ContactContainer from './containers/ContactContainer';
 
 const theme = createMuiTheme({
   palette: {
@@ -103,7 +104,7 @@ const App: React.FC = () => {
             <CustomDivider color="black"/>
           </Grid>
           <Grid item className={classes.spacing}>
-            <Contact/>
+            <ContactContainer/>
           </Grid>
         </Grid>
         <Footer/>

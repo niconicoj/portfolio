@@ -2,6 +2,8 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Card, CardContent, Grid, Typography, Container, TextField, Button } from '@material-ui/core';
 
+import { State } from '../reducers/contact'
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     skillsCard: {
@@ -23,8 +25,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Contact() {
+interface Props {
+  contact: State
+  dispatchUpdate: (id: string, value: string) => void
+  dispatchValidate: () => void
+}
+
+function Contact(props: Props) {
   const classes = useStyles();
+
+  const handleSend = () => {
+    props.dispatchValidate();
+  }
 
   return(
     <Container maxWidth="md">
@@ -53,7 +65,11 @@ function Contact() {
                     label="Email"
                     placeholder="example@mail.com"
                     variant="outlined"
+                    value={props.contact.mail}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('mail', e.target.value)}}
                     className={classes.inputField}
+                    error={props.contact.errors.mail.status}
+                    helperText={props.contact.errors.mail.message}
                   />
                 </Grid>
                 <Grid item>
@@ -64,7 +80,11 @@ function Contact() {
                     label="Name"
                     placeholder="John Doe"
                     variant="outlined"
+                    value={props.contact.name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('name', e.target.value)}}
                     className={classes.inputField}
+                    error={props.contact.errors.name.status}
+                    helperText={props.contact.errors.name.message}
                   />
                 </Grid>
                 <Grid item>
@@ -92,11 +112,15 @@ function Contact() {
                     fullWidth
                     rows="6"
                     placeholder="enter your message here..."
+                    value={props.contact.message}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('message', e.target.value)}}
+                    error={props.contact.errors.message.status}
+                    helperText={props.contact.errors.message.message}
                     variant="outlined"
                   />
                 </Grid>
                 <Grid item className={classes.formButton}>
-                  <Button variant="contained" color="primary" size="large">
+                  <Button variant="contained" color="primary" size="large" onClick={handleSend}>
                     Send
                   </Button>
                 </Grid>
