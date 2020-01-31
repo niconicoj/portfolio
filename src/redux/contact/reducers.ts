@@ -26,7 +26,11 @@ const initialState: ContactState = {
       message: {
         status: false
       },
-    }
+      fetching: {
+        status: false
+      }
+    },
+    fetching: false
   },
 }
 
@@ -48,6 +52,7 @@ export default combineReducers<ContactState, ContactAction>({
         return {
           ...state,
           errors: {
+            ...state.errors,
             name: {
               status: (state.name.length === 0 || state.name.length >= 64),
               message: ((state.name.length === 0 && "you have to enter a name.") ||
@@ -62,6 +67,16 @@ export default combineReducers<ContactState, ContactAction>({
               message: (state.message.length === 0 && "you have to enter a message.")
             }
           }
+        }
+      case ActionTypes.FETCH:
+        return {
+          ...state,
+          fetching: true
+        }
+      case ActionTypes.FULLFILLED:
+        return {
+          ...state,
+          fetching: false
         }
 
       default:

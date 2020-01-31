@@ -9,6 +9,7 @@ export interface Contact {
   company?: string,
   message: string,
   errors: ContactError
+  fetching: boolean
 }
 
 export interface ContactError {
@@ -16,4 +17,5 @@ export interface ContactError {
   mail: Error,
   company?: Error,
   message: Error,
+  fetching: Error
 }
