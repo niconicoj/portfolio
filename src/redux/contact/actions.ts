@@ -1,5 +1,5 @@
-import { createAction } from 'typesafe-actions';
+import { action } from 'typesafe-actions';
 import { ActionTypes } from './constants';
 
-export const updateAction = createAction(ActionTypes.UPDATE)<{id: string, value: string}>();
-export const validateAction = createAction(ActionTypes.VALIDATE)();
+export const update = (id: string, value: string) => action(ActionTypes.UPDATE, {id: id, value: value});
+export const validate = () => action(ActionTypes.VALIDATE);

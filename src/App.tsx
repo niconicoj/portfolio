@@ -9,7 +9,7 @@ import CustomDivider from './components/customDivider';
 import SkillsArray from './components/SkillsArray';
 import Footer from './components/Footer';
 
-import ContactContainer from './containers/ContactContainer';
+import { ContactContainer } from './containers/ContactContainer';
 
 const theme = createMuiTheme({
   palette: {
@@ -104,12 +104,12 @@ const App: React.FC = () => {
             <CustomDivider color="black"/>
           </Grid>
           <Grid item className={classes.spacing}>
-            <ContactContainer/>
+            <ContactContainer />
           </Grid>
         </Grid>
         <Footer/>
       </div>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 
