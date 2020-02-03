@@ -34,7 +34,7 @@ export const fetchAction: Epic<RootAction, RootAction, RootState> = (
     switchMap( action =>
       ajax(  
         {
-          url: 'http://api.niconico.io/api/send/mail',
+          url: 'https://api.niconico.io/api/send/mail',
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
