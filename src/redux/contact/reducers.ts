@@ -76,9 +76,37 @@ export default combineReducers<ContactState, ContactAction>({
       case ActionTypes.FULLFILLED:
         return {
           ...state,
-          fetching: false
+          fetching: false,
+          errors: {
+            ...state.errors,
+            fetching: {
+              status: false,
+              message: "success"
+            }
+          }
         }
-
+      case ActionTypes.ERROR:
+        return {
+          ...state,
+          fetching: false,
+          errors: {
+            ...state.errors,
+            fetching: {
+              status: true,
+              message: action.payload.message
+            }
+          }
+        }
+      case ActionTypes.DISSMISS:
+        return {
+          ...state,
+          errors: {
+            ...state.errors,
+            fetching: {
+              status: false
+            }
+          }
+        }
       default:
         return state;
     }

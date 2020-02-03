@@ -11,7 +11,8 @@ const mapStateToProps = (state: Types.RootState) => ({
 
 const dispatchProps = {
   update: contactActions.update,
-  validate : contactActions.validate
+  validate : contactActions.validate,
+  dissmiss : contactActions.dissmissError,
 };
 
 export const ContactContainer = connect(
