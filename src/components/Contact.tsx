@@ -1,8 +1,10 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Card, CardContent, Grid, Typography, Container, TextField, Button } from '@material-ui/core';
+import { blue } from '@material-ui/core/colors';
+import { Card, CardContent, Grid, Typography, Container, TextField, Button, CircularProgress, Snackbar } from '@material-ui/core';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
-import { State } from '../reducers/contact'
+import * as ContactTypes from '../redux/contact/models'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,21 +23,43 @@ const useStyles = makeStyles((theme: Theme) =>
     formButton: {
       alignSelf: "flex-end",
       marginTop: theme.spacing(2),
-    }
+    },
+    buttonWrapper: {
+      margin: theme.spacing(1),
+      position: 'relative',
+    },
+    buttonProgress: {
+      color: blue[700],
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      marginTop: -12,
+      marginLeft: -12,
+    },
   }),
 );
 
-interface Props {
-  contact: State
-  dispatchUpdate: (id: string, value: string) => void
-  dispatchValidate: () => void
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function Contact(props: Props) {
+interface Props {
+  contact: ContactTypes.Contact
+  update: (id: string, value: string) => void
+  validate: () => void
+  dissmiss: () => void
+}
+
+const Contact: React.FC<Props> = props => {
   const classes = useStyles();
 
   const handleSend = () => {
-    props.dispatchValidate();
+    console.log(props.contact)
+    props.validate();
+  }
+
+  const dissmissError = () => {
+    props.dissmiss();
   }
 
   return(
@@ -66,7 +90,7 @@ function Contact(props: Props) {
                     placeholder="example@mail.com"
                     variant="outlined"
                     value={props.contact.mail}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('mail', e.target.value)}}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.update('mail', e.target.value)}}
                     className={classes.inputField}
                     error={props.contact.errors.mail.status}
                     helperText={props.contact.errors.mail.message}
@@ -81,7 +105,7 @@ function Contact(props: Props) {
                     placeholder="John Doe"
                     variant="outlined"
                     value={props.contact.name}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('name', e.target.value)}}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.update('name', e.target.value)}}
                     className={classes.inputField}
                     error={props.contact.errors.name.status}
                     helperText={props.contact.errors.name.message}
@@ -113,21 +137,47 @@ function Contact(props: Props) {
                     rows="6"
                     placeholder="enter your message here..."
                     value={props.contact.message}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.dispatchUpdate('message', e.target.value)}}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {props.update('message', e.target.value)}}
                     error={props.contact.errors.message.status}
                     helperText={props.contact.errors.message.message}
                     variant="outlined"
                   />
                 </Grid>
                 <Grid item className={classes.formButton}>
-                  <Button variant="contained" color="primary" size="large" onClick={handleSend}>
-                    Send
-                  </Button>
+                  <div className={classes.buttonWrapper}>
+                    <Button 
+                      variant="contained" 
+                      color="primary" 
+                      size="large"
+                      disabled={props.contact.fetching} 
+                      onClick={handleSend}>
+                        Send
+                    </Button>
+                    {props.contact.fetching && <CircularProgress size={24} className={classes.buttonProgress}/>}
+                  </div>
                 </Grid>
               </Grid>
             </Grid>
           </CardContent>
         </Card>
+        <Snackbar 
+          anchorOrigin={{vertical: 'bottom', horizontal:'right'}}
+          open={props.contact.errors.fetching.status} 
+          autoHideDuration={6000} 
+          onClose={dissmissError}>
+          <Alert onClose={dissmissError} severity="error">
+            {props.contact.errors.fetching.message}
+          </Alert>
+      </Snackbar>
+      <Snackbar 
+        anchorOrigin={{vertical: 'bottom', horizontal:'right'}}
+        open={!props.contact.errors.fetching.status && props.contact.errors.fetching.message === "success"} 
+        autoHideDuration={6000} 
+        onClose={dissmissError}>
+        <Alert onClose={dissmissError} severity="success">
+          your message was delivered !
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

@@ -1,15 +1,21 @@
   
-import { connect } from 'react-redux'
-import { State } from '../reducers'
-import { updateContact, validateContact } from '../actions/contact'
-import { getContact } from '../selectors/contact'
-import Contact from '../components/Contact'
+import Types from 'MyTypes';
+import { connect } from 'react-redux';
 
-const mapStateToProps = (state: State) => ({
-  contact: getContact(state)
+import { contactActions, contactSelectors } from '../redux/contact';
+import Contact from '../components/Contact';
+
+const mapStateToProps = (state: Types.RootState) => ({
+  contact: contactSelectors.getContact(state.contact)
 })
 
-export default connect<any, any, any, any>(mapStateToProps, {
-  dispatchUpdate: updateContact,
-  dispatchValidate: validateContact
-})(Contact)
+const dispatchProps = {
+  update: contactActions.update,
+  validate : contactActions.validate,
+  dissmiss : contactActions.dissmissError,
+};
+
+export const ContactContainer = connect(
+  mapStateToProps,
+  dispatchProps
+)(Contact);
