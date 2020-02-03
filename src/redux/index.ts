@@ -22,7 +22,7 @@ const enhancer = applyMiddleware(...middlewares);
 const initialState = {};
 
 // create store
-const store = createStore(rootReducer, initialState, enhancer);
+const store = createStore(rootReducer(), initialState, enhancer);
 
 epicMiddleware.run(rootEpic);
 

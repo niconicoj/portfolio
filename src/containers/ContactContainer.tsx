@@ -6,7 +6,7 @@ import { contactActions, contactSelectors } from '../redux/contact';
 import Contact from '../components/Contact';
 
 const mapStateToProps = (state: Types.RootState) => ({
-  contact: contactSelectors.getContact(state)
+  contact: contactSelectors.getContact(state.contact)
 })
 
 const dispatchProps = {

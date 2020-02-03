@@ -1,9 +1,9 @@
-interface Error {
+type Error = {
   status : boolean,
   message?: string | boolean
 }
 
-export interface Contact {
+export type Contact = {
   name: string,
   mail: string,
   company?: string,
@@ -12,7 +12,7 @@ export interface Contact {
   fetching: boolean
 }
 
-export interface ContactError {
+export type ContactError = {
   name: Error,
   mail: Error,
   company?: Error,
