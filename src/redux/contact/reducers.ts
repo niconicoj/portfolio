@@ -75,7 +75,7 @@ export default combineReducers<ContactState, ContactAction>({
         }
       case ActionTypes.FULLFILLED:
         return {
-          ...state,
+          ...initialState.contact,
           fetching: false,
           errors: {
             ...state.errors,
