@@ -21,7 +21,6 @@ import {
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 
 import Bookmark from './decoration/Bookmark';
-import theme from '../theme';
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
