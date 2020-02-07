@@ -4,14 +4,12 @@ import {
   Theme,
   createStyles,
   Typography,
-  Container,
   Box,
   Grid,
   useTheme,
   useMediaQuery
 } from '@material-ui/core';
 import Bookmark from './decoration/Bookmark';
-import { fontSize } from '@material-ui/system';
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -31,7 +29,9 @@ const useStyles = makeStyles((theme: Theme) =>
       maxHeight: "100%",
       margin: theme.spacing(4),
       top: '50%',
-      transform: 'translate(0, -50%)'
+      transform: 'translate(0, -50%)',
+      zIndex: -1,
+      opacity: "75%"
     }
   }),
 );
@@ -44,11 +44,11 @@ const About: React.FC = () => {
   const image = ( match: boolean ) => {
     if(match) {
       return (
-        <img src="static/images/shapes.sm.svg" className={classes.shapes}></img>
+        <img src="static/images/shapes.sm.svg" className={classes.shapes} alt=""></img>
       );
     } else {
       return (
-        <img src="static/images/shapes.xs.svg" className={classes.shapes}></img>
+        <img src="static/images/shapes.xs.svg" className={classes.shapes} alt=""></img>
       );
     }
   }
