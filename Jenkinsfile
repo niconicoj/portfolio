@@ -24,15 +24,6 @@ pipeline {
       }
     }
 
-    stage('User Test') {
-      steps {
-        sh './scripts/uat.sh'
-        echo "Test environment is live at ${BUILD_TAG}.niconico.io."
-        input 'When done with testing click "Proceed" to continue.'
-        sh './scripts/kill.sh'
-      }
-    }
-
     stage('Deliver') {
       when {
         branch 'master'
