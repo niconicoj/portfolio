@@ -67,7 +67,7 @@ const Contact: React.FC<Props> = props => {
       <Card elevation={8} className={classes.skillsCard}>
           <CardContent>
             <Typography paragraph>
-              If you want to get in touch with me you can fill in this form and I'll get back to you via the mail address you provide.
+              If you want to get in touch with me you can fill in this form and I'll get back to you via the mail address you provided.
             </Typography>
             <Grid container 
             direction="row"
