@@ -21,7 +21,7 @@ interface SkillItemProps {
 function SkillsArray(props: SkillItemProps) {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   const {icon, tooltip} = props;
 

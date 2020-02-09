@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
     menuButton: {
       marginLeft: theme.spacing(2)
     },
-    menuIcon: {
-
+    menu: {
+      zIndex:2,
     }
   }),
 );
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                 {...TransitionProps}
                 style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'bottom-right' }}
               >
-                <Paper elevation={0}>
+                <Paper elevation={0} className={classes.menu}>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                       <MenuItem onClick={handleClose}>About</MenuItem>

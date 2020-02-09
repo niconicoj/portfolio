@@ -7,7 +7,9 @@ import {
   Box,
   Grid,
   Card,
-  CardContent
+  CardContent,
+  useTheme,
+  useMediaQuery
 } from '@material-ui/core';
 
 import SkillItem from './SkillItem';
@@ -19,36 +21,55 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(8),
       marginBottom: theme.spacing(4),
       overflow: "hidden",
-      position: "relative"
+      position: "relative",
+      [theme.breakpoints.down('xs')]: {
+        paddingLeft: theme.spacing(8),
+      },
     },
     subtitle: {
       marginBottom: theme.spacing(2),
     },
     shapes: {
-      position: "absolute",
-      maxWidth: "100%",
-      maxHeight: "100%",
-      margin: theme.spacing(4),
+      position: 'relative',
+      width: '100%',
+      height: '80%',
+      objectFit: 'cover',
+      transform: 'translate(0, -50%)',
       top: '50%',
-      transform: 'translate(0, -50%)'
+    },
+    container: {
+      width: '-webkit-fill-available',
     }
   }),
 );
 
 const Skills: React.FC = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const smMatch = useMediaQuery(theme.breakpoints.up('sm'));
+
   const skills = ['php', 'javascript', 'sql', 'css', 'docker', 'react', 'mongoDB', 'typescript', 'nodejs', 'git', 'jenkins', 'nginx'];
+
+  const displayImage = (match: boolean) => {
+    if(match) {
+      return (
+        <Grid item sm={4}>
+          <img className={classes.shapes} src="/static/images/stripes.sm.svg" alt=""></img>
+        </Grid>
+      );
+    }
+  }
 
   return (
     <div>
       <Box className={classes.root}>
         <Grid container justify="flex-end">
-          <Grid item>
+          <Grid item className={classes.container}>
             <Typography variant="h2" component="h2" gutterBottom align="right">
               Skills
             </Typography>
-            <Grid container direction="row-reverse" justify="space-between" alignItems="center">
-              <Grid item sm={8}>
+            <Grid container direction="row-reverse" justify="space-between" alignItems="stretch">
+              <Grid item sm={8} xs={12}>
                 <Card elevation={0}>
                   <CardContent>
                       <Grid container>
@@ -61,9 +82,7 @@ const Skills: React.FC = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item sm={4}>
-                <img src="/static/images/stripes.sm.svg" alt=""></img>
-              </Grid>
+              {displayImage(smMatch)}
             </Grid>
           </Grid>
         </Grid>
