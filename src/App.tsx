@@ -6,6 +6,8 @@ import theme from './theme'
 import Header from './components/Header';
 import About from './components/About';
 import Skills from './components/Skills';
+import { ContactContainer } from './containers/ContactContainer';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
 
@@ -16,6 +18,8 @@ const App: React.FC = () => {
         <Header/>
         <About/>
         <Skills/>
+        <ContactContainer/>
+        <Footer/>
       </div>
     </ThemeProvider >
   );

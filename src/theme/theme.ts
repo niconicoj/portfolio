@@ -18,8 +18,40 @@ let theme = createMuiTheme({
       }
     },
     MuiButton: {
+      root: {
+        transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;",
+      },
       textSizeLarge: {
         fontSize: '2em',
+      },
+      containedPrimary: {
+        color: '#fdf9f3',
+        '&:hover': {
+          backgroundColor: '#087a8d',
+        }
+      },
+      containedSizeLarge: {
+
+      },
+      contained: {
+        boxShadow: undefined,
+        '&:hover': {
+          boxShadow: undefined,
+        }
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        fontSize: '1.25rem',
+        fontWeight: 100,
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        background: '#efebe5',
+      },
+      notchedOutline: {
+        borderWidth: '0px',
       }
     }
   },
