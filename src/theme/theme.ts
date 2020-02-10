@@ -87,7 +87,7 @@ let theme = createMuiTheme({
 
 theme.typography.h1 = {
   ...theme.typography.h1,
-  fontSize: '2rem',
+  fontSize: '2.5rem',
   [theme.breakpoints.up('sm')]: {
     fontSize: '4rem',
   },
@@ -99,11 +99,37 @@ theme.typography.h1 = {
 theme.typography.h2 = {
   ...theme.typography.h2,
   fontWeight: 500,
+  fontSize: '2.25rem',
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '3.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
 }
 
 theme.typography.body1 = {
   ...theme.typography.body1,
-  fontSize:'2rem'
+  fontWeight: 100,
+  fontSize:'1.5rem',
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '1.75rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem',
+  },
+}
+
+theme.typography.subtitle1 = {
+  ...theme.typography.subtitle1,
+  fontWeight: 400,
+  fontSize:'1.5rem',
+  [theme.breakpoints.up('sm')]: {
+    fontSize: '1.75rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem',
+  },
 }
 
 export default theme;

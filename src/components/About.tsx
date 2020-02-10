@@ -14,8 +14,12 @@ import Bookmark from './decoration/Bookmark';
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
-      paddingLeft: theme.spacing(8),
-      paddingRight: theme.spacing(8),
+      paddingLeft: theme.spacing(6),
+      paddingRight: theme.spacing(4),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(8),
+        paddingRight: theme.spacing(8),
+      },
       marginBottom: theme.spacing(4),
       overflow: "hidden",
       position: "relative"
@@ -61,19 +65,19 @@ const About: React.FC = () => {
             <Typography variant="h2" component="h2" gutterBottom>
               About me
             </Typography>
-            <Typography component="div">
-              <Box fontStyle="italic" fontWeight={400} className={classes.subtitle}>
+            <Typography variant="subtitle1" gutterBottom>
+              <Box fontStyle="italic">
                 Hi I’m Nicolas. I am a Developer who specialize in web & web apps development.
               </Box>
-              <Box fontWeight={100} fontSize="1.75rem">
-                I have professional experience working with PHP, javascript, css and SQL on environments using dockerized services and GIT.
-              </Box>
-              <Box fontWeight={100}  fontSize="1.75rem">
-                Since I enjoy learning about new development paradigms I am also self taught in a variety of other technologies.
-              </Box>
-              <Box fontWeight={100}  fontSize="1.75rem">
-                If I’m not coding I’m making music or building my own guitar effect pedals.
-              </Box>
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              I have professional experience working with PHP, javascript, css and SQL on environments using dockerized services and GIT.
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Since I enjoy learning about new development paradigms I am also self taught in a variety of other technologies.
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              If I’m not coding I’m making music or building my own guitar effect pedals.
             </Typography>
           </Grid>
           <Grid item sm={6}>

@@ -18,13 +18,15 @@ import Bookmark from './decoration/Bookmark';
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
-      paddingRight: theme.spacing(8),
+      paddingLeft: theme.spacing(4),
+      paddingRight: theme.spacing(6),
+      [theme.breakpoints.up('sm')]: {
+        paddingRight: theme.spacing(8),
+        paddingLeft: 0
+      },
       marginBottom: theme.spacing(4),
       overflow: "hidden",
       position: "relative",
-      [theme.breakpoints.down('xs')]: {
-        paddingLeft: theme.spacing(8),
-      },
     },
     subtitle: {
       marginBottom: theme.spacing(2),

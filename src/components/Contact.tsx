@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
-import { Card, CardContent, Grid, Typography, Container, TextField, Button, CircularProgress, Snackbar, Box } from '@material-ui/core';
+import { Grid, Typography, TextField, Button, CircularProgress, Snackbar, Box } from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 import * as ContactTypes from '../redux/contact/models'
@@ -10,8 +10,12 @@ import Bookmark from './decoration/Bookmark';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      paddingLeft: theme.spacing(8),
-      paddingRight: theme.spacing(8),
+      paddingLeft: theme.spacing(6),
+      paddingRight: theme.spacing(4),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(8),
+        paddingRight: theme.spacing(8),
+      },
       marginBottom: theme.spacing(4),
       overflow: "hidden",
       position: "relative"
@@ -84,10 +88,8 @@ const Contact: React.FC<Props> = props => {
             direction="column"
             alignItems="stretch">
               <Grid item>
-                <Typography component="div">
-                  <Box fontWeight={100} fontSize="1.75rem">
-                    What is you name ?
-                  </Box>
+                <Typography variant="body1">
+                  What is you name ?
                 </Typography>
                 <TextField
                   required
@@ -104,10 +106,8 @@ const Contact: React.FC<Props> = props => {
                 />
               </Grid>
               <Grid item>
-                <Typography component="div">
-                  <Box fontWeight={100} fontSize="1.75rem">
-                    What is your email address ?
-                  </Box>
+                <Typography variant="body1">
+                  What is your email address ?
                 </Typography>
                 <TextField
                   required
@@ -124,10 +124,8 @@ const Contact: React.FC<Props> = props => {
                 />
               </Grid>
               <Grid item>
-                <Typography component="div">
-                  <Box fontWeight={100} fontSize="1.75rem">
-                    What is your company ?
-                  </Box>
+                <Typography variant="body1">
+                  What is your company ?
                 </Typography>
                 <TextField
                   fullWidth
@@ -145,10 +143,8 @@ const Contact: React.FC<Props> = props => {
               direction="column"
               alignItems="stretch">
               <Grid item>
-                <Typography component="div">
-                  <Box fontWeight={100} fontSize="1.75rem">
-                    You can write your message to me here, I will get back to you via the email you provided.
-                  </Box>
+                <Typography variant="body1">
+                  You can write your message to me here, I will get back to you via the email you provided.
                 </Typography>
                 <TextField
                   id="outlined-multiline-static"
