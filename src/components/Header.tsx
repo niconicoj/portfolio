@@ -1,57 +1,140 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { Grid, Avatar } from '@material-ui/core';
-import CustomDivider from './customDivider';
+import { 
+  Typography, 
+  Box,
+  AppBar,
+  Toolbar, 
+  Button,
+  makeStyles,
+  Theme,
+  createStyles,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+  Popper,
+  Paper,
+  ClickAwayListener,
+  MenuList,
+  MenuItem,
+  Grow
+} from '@material-ui/core';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 
-const useStyles = makeStyles((theme: Theme) =>
+import Bookmark from './decoration/Bookmark';
+
+const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
-      backgroundColor: '#386FA4',
-      color: 'white',
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(1),
-      marginBottom: theme.spacing(2)
+      flexGrow: 1,
+      marginBottom: theme.spacing(4)
     },
-    avatar: {
-      width: theme.spacing(16),
-      height: theme.spacing(16),
+    title: {
+      flexGrow: 1,
     },
-    spacing: {
-      marginBottom: theme.spacing(2)
+    menuButton: {
+      marginLeft: theme.spacing(2)
+    },
+    menu: {
+      zIndex:2,
     }
   }),
 );
 
-function Header() {
+
+const Header: React.FC = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  return(
-    <Grid container
-      direction="column"
-      justify="center"
-      alignItems="center"
-      className={classes.root}>
-      <Grid item className={classes.spacing}>
-        <Avatar alt="Nicolas JOULIN" src="/static/images/avatar.webp" className={classes.avatar}/>
-      </Grid>
-      <Grid item className={classes.spacing}>
-        <Typography variant="h5">
-          Nicolas JOULIN
-        </Typography>
-      </Grid>
-      <Grid item className={classes.spacing}>
-        <CustomDivider color="white"/>
-      </Grid>
-      <Grid item className={classes.spacing}>
-        <Typography>
-          Full-stack Developer
-        </Typography>
-      </Grid>
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-    </Grid>
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
+
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current!.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  const menu = (matches: boolean) => {
+    if(matches) {
+      return (
+        <div>
+          <Button className={classes.menuButton} size="large">About</Button>
+          <Button className={classes.menuButton} size="large">Skills</Button>
+          <Button className={classes.menuButton} size="large">contact</Button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <IconButton 
+            ref={anchorRef}
+            aria-label="menu"
+            aria-controls={open ? 'menu-list-grow' : undefined}
+            aria-haspopup="true"
+            color="inherit"
+            onClick={handleToggle}
+          >
+            <MenuRoundedIcon fontSize="large"/>
+          </IconButton>
+          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'bottom-right' }}
+              >
+                <Paper elevation={0} className={classes.menu}>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                      <MenuItem onClick={handleClose}>About</MenuItem>
+                      <MenuItem onClick={handleClose}>Skills</MenuItem>
+                      <MenuItem onClick={handleClose}>Contact</MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      );
+    }
+  }
+
+  return (
+    <AppBar position="static" elevation={0} className={classes.root}>
+      <Toolbar>
+        <Typography variant="h1" component="h1" className={classes.title}>
+          <Box fontWeight="fontWeightBold">
+          niconico.io
+          </Box>
+        </Typography>
+        {menu(matches)}
+        <Bookmark color="#5cd9c0" position="right"/>
+      </Toolbar>
+    </AppBar>
   );
-
 }
 
 export default Header;

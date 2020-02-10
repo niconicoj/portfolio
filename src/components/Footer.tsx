@@ -39,10 +39,10 @@ function Footer() {
       <Grid item className={classes.spacing}>
         <Grid container direction="row" justify="flex-start" alignItems="center">
           <IconButton component="a" href="https://github.com/niconicoj">
-            <img src="/static/images/github.webp" height="25" width="25" alt="github"></img>
+            <img src="/static/images/github.webp" height="40" width="40" alt="github"></img>
           </IconButton>
           <IconButton component="a" href="https://www.linkedin.com/in/nicolas-joulin-8b5a92166">
-            <img src="/static/images/linkedin.webp" height="25" width="25" alt="linkedin"></img>
+            <img src="/static/images/linkedin.webp" height="40" width="40" alt="linkedin"></img>
           </IconButton>
         </Grid>
       </Grid>

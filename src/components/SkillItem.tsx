@@ -1,20 +1,14 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Grid, Typography, useMediaQuery, Tooltip, Zoom } from '@material-ui/core';
+import { Grid, Typography, useMediaQuery, Tooltip, Zoom, Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    skillsCard: {
-      backgroundColor: "#1E1E1E",
-      color:"white",
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2)
-    },
     skillImage: {
       margin: theme.spacing(1)
     },
     skillText: {
-      marginLeft:theme.spacing(2)
+      marginLeft:theme.spacing(1)
     }
   }),
 );
@@ -27,7 +21,7 @@ interface SkillItemProps {
 function SkillsArray(props: SkillItemProps) {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
 
   const {icon, tooltip} = props;
 
@@ -35,9 +29,11 @@ function SkillsArray(props: SkillItemProps) {
     return(
       <Grid container direction="row" justify="flex-start" alignItems="center">
         <img src={icon} alt={tooltip} height="50" width="50" className={classes.skillImage}></img>
-        <Typography className={classes.skillText}>
-          {tooltip}
-        </Typography>
+          <Typography className={classes.skillText} component="div">
+            <Box fontSize="1.75rem" fontWeight={100}>
+              {tooltip}
+            </Box>
+          </Typography>
       </Grid>
     );
   } else {

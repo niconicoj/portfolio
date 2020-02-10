@@ -3,6 +3,7 @@ import Types from 'MyTypes';
 import { connect } from 'react-redux';
 
 import { contactActions, contactSelectors } from '../redux/contact';
+
 import Contact from '../components/Contact';
 
 const mapStateToProps = (state: Types.RootState) => ({
