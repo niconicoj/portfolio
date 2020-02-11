@@ -11,6 +11,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@material-ui/core';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 import SkillItem from './SkillItem';
 import Bookmark from './decoration/Bookmark';
@@ -67,9 +68,11 @@ const Skills: React.FC = () => {
       <Box className={classes.root}>
         <Grid container justify="flex-end">
           <Grid item className={classes.container}>
-            <Typography variant="h2" component="h2" gutterBottom align="right">
-              Skills
-            </Typography>
+            <ScrollableAnchor id={'Skills'}>
+              <Typography variant="h2" component="h2" gutterBottom align="right">
+                Skills
+              </Typography>
+            </ScrollableAnchor>
             <Grid container direction="row-reverse" justify="space-between" alignItems="stretch">
               <Grid item sm={8} xs={12}>
                 <Card elevation={0}>

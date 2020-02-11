@@ -39,7 +39,7 @@ function SkillsArray(props: SkillItemProps) {
   } else {
     return(
       <Grid container direction="row" justify="center" alignItems="center">
-        <Tooltip title={tooltip} placement="right" TransitionComponent={Zoom} arrow disableFocusListener>
+        <Tooltip title={tooltip} placement="bottom" TransitionComponent={Zoom} arrow  disableFocusListener disableTouchListener>
           <img src={icon} alt={tooltip} height="50" width="50" className={classes.skillImage}></img>
         </Tooltip>
       </Grid>

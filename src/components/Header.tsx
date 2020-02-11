@@ -11,14 +11,11 @@ import {
   useTheme,
   useMediaQuery,
   IconButton,
-  Popper,
-  Paper,
-  ClickAwayListener,
-  MenuList,
+  Menu,
   MenuItem,
-  Grow
 } from '@material-ui/core';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import { goToAnchor } from 'react-scrollable-anchor';
 
 import Bookmark from './decoration/Bookmark';
 
@@ -46,77 +43,52 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
+  const [open] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event: React.MouseEvent<EventTarget>) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-      return;
+  const handleClose = (section?: string) => {
+    if(section!==undefined){
+      goToAnchor(section);
     }
-
-    setOpen(false);
+    setAnchorEl(null);
   };
-
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   const menu = (matches: boolean) => {
     if(matches) {
       return (
         <div>
-          <Button className={classes.menuButton} size="large">About</Button>
-          <Button className={classes.menuButton} size="large">Skills</Button>
-          <Button className={classes.menuButton} size="large">contact</Button>
+          <Button className={classes.menuButton} size="large" href="#About">About</Button>
+          <Button className={classes.menuButton} size="large" href="#Skills">Skills</Button>
+          <Button className={classes.menuButton} size="large" href="#Contact">contact</Button>
         </div>
       );
     } else {
       return (
         <div>
-          <IconButton 
-            ref={anchorRef}
+          <IconButton
             aria-label="menu"
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             color="inherit"
-            onClick={handleToggle}
+            onClick={handleClick}
           >
             <MenuRoundedIcon fontSize="large"/>
           </IconButton>
-          <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'bottom-right' }}
-              >
-                <Paper elevation={0} className={classes.menu}>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                      <MenuItem onClick={handleClose}>About</MenuItem>
-                      <MenuItem onClick={handleClose}>Skills</MenuItem>
-                      <MenuItem onClick={handleClose}>Contact</MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={() => handleClose()}
+          >
+            <MenuItem onClick={() => handleClose('About')}>About</MenuItem>
+            <MenuItem onClick={() => handleClose('Skills')}>Skills</MenuItem>
+            <MenuItem onClick={() => handleClose('Contact')}>Contact</MenuItem>
+          </Menu>
         </div>
       );
     }
