@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { blue } from '@material-ui/core/colors';
 import { Grid, Typography, TextField, Button, CircularProgress, Snackbar, Box } from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 import * as ContactTypes from '../redux/contact/models'
 import Bookmark from './decoration/Bookmark';
@@ -77,9 +78,11 @@ const Contact: React.FC<Props> = props => {
     <div>
       <Box className={classes.root}>
         <Grid container>
-          <Typography variant="h2" component="h2" gutterBottom>
-            Contact me
-          </Typography>
+          <ScrollableAnchor id={'Contact'}>
+            <Typography variant="h2" component="h2" gutterBottom>
+              Contact me
+            </Typography>
+          </ScrollableAnchor>
           <Grid container alignItems="stretch" justify="space-between">
             <Grid container 
             item 

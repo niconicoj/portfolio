@@ -9,6 +9,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@material-ui/core';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import Bookmark from './decoration/Bookmark';
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -62,9 +63,11 @@ const About: React.FC = () => {
       <Box className={classes.root}>
         <Grid container>
           <Grid item sm={6}>
-            <Typography variant="h2" component="h2" gutterBottom>
-              About me
-            </Typography>
+            <ScrollableAnchor id={'About'}>
+              <Typography variant="h2" component="h2" gutterBottom>
+                About me
+              </Typography>
+            </ScrollableAnchor>
             <Typography variant="subtitle1" gutterBottom>
               <Box fontStyle="italic">
                 Hi I’m Nicolas. I am a Developer who specialize in web & web apps development.
