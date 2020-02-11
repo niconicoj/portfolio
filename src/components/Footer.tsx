@@ -6,7 +6,7 @@ import { Grid, IconButton } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: '#434343',
+      backgroundColor: '#484643',
       color: '#dddddd',
       paddingTop: theme.spacing(1),
       marginTop: theme.spacing(2),
